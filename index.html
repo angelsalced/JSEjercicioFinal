@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elemento Mayor Arreglo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Elemento mas grande en un arreglo</h1>
+    <form id="Formulario">
+        <label for="elementos">Ingrese los elementos del arreglo (separados por comas y sin espacios):</label>
+        <input type="text" id="elementos" required>
+        <br>
+        <br>
+        <label for="posicion">Ingrese posicion:</label>
+        <input type="number" id="posicion" required>
+        <br>
+        <br>
+        <button type="submit">Obtener</button>
+    </form>
+    <h4>Resultado</h4>
+    <pre id="resultado"></pre>
+
+    <script>
+        document.getElementById('Formulario').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const elementosIngresados = document.getElementById('elementos').value;
+            const posicionIngresada = parseInt(document.getElementById('posicion').value);
+
+            const elementosArreglo = elementosIngresados.split(',').map(Number);
+
+            if (posicionIngresada < 1 || posicionIngresada > elementosArreglo.length) {
+                document.getElementById('resultado').innerText = `Segun el arreglo, la posicion maxima es ${elementosArreglo.length}. \nVerifique la posicion a elegir.`;
+                return;
+            }
+
+            const elementoMax = Math.max(...elementosArreglo.slice(0, posicionIngresada));
+
+            document.getElementById('resultado').innerText = `Hasta la posicion ${posicionIngresada}, el elemento más grande del arreglo es: ${elementoMax}`;
+        });
+    </script>
+</body>
+</html>
